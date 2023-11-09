@@ -2,9 +2,9 @@ import socket
 import argparse
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-# logging.FileHandler("/var/log/bs_server/bs_server.log"), 
-host = ''
+logging.basicConfig(filename="/var/log/bs_server/bs_server.log", level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+host = '10.33.76.214'
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="open on a specific port")
