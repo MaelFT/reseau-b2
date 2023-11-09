@@ -18,7 +18,7 @@ data = input("Que veux-tu envoyer au serveur : ")
 
 regexp = re.compile(r'\b(meo|waf)')
 print(regexp.search(data))
-if (regexp.search(data) == 'None'):
+if (regexp.search(data) == None):
     raise ValueError("Votre message doit contenir 'meo' ou 'waf' !")
 
 if type(data) is not str:
