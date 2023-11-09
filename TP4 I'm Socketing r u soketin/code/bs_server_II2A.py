@@ -35,6 +35,7 @@ s.listen(1)
 conn, addr = s.accept()
 
 logging.info(f'Le serveur tourne sur {host}:{port}')
+print(logging.info(f'Le serveur tourne sur {host}:{port}'))
 logging.info(f'Un client {addr} s\'est connecté.')
 
 while True:
