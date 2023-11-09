@@ -20,7 +20,7 @@ regexp = re.compile(r'\b(meo|waf)\b')
 if (regexp.search(data) == 'None'):
     raise ValueError("Votre message doit contenir 'meo' ou 'waf' !")
 
-if type(data) is not str or data:
+if type(data) is not str:
     raise TypeError("Ici on veut que des strings !")
 
 s.sendall(data.encode())
