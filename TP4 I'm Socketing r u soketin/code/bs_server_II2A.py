@@ -1,5 +1,8 @@
 import socket
 import argparse
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
 host = ''
 
@@ -28,7 +31,9 @@ except Exception as e:
 
 s.listen(1)
 conn, addr = s.accept()
-print(f'Un client vient de se co et son IP c\'est {addr}')
+
+logging.info(f'Le serveur tourne sur {host}:{port}')
+logging.info(f'Un client {addr} s\'est connecté.')
 
 while True:
 
@@ -37,12 +42,19 @@ while True:
 
         if not data: break
 
+        logging.info(f'Le client {addr} a envoyé {data}.')
+
+        message = ''
+
         if (data.decode().__contains__("meo")):
-            conn.sendall(b'Meo a toi confrere.')
+            message = b'Meo a toi confrere.'
         elif (data.decode().__contains__("waf")):
-            conn.sendall(b'ptdr t ki')
+            message = b'ptdr t ki'
         else:
-            conn.sendall(b'Mes respects humble humain.')
+            message = b'Mes respects humble humain.'
+        
+        logging.info(f'Réponse envoyée au client {addr} : {message}.')
+        conn.sendall(message)
 
     except socket.error:
         print("Error Occured.")
