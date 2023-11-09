@@ -19,9 +19,9 @@ while True:
 
         print(data)
 
-        if (data == 'meo'):
+        if (data == "b'meo'"):
             conn.sendall('Meo à toi confrère.')
-        elif (data == 'waf'):
+        elif (data == "b'waf'"):
             conn.sendall(b'ptdr t ki')
         else:
             conn.sendall(b'Mes respects humble humain.')
