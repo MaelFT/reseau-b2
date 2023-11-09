@@ -5,33 +5,28 @@ import psutil
 
 def network():
     if(len(argv) < 2):
-        print("Veuillez rajouter des arguments")
-        exit()
-    if(argv[1] == "lookup"):
-        return lookup()
-    if(argv[1] == "ping"):
-        return ping()
-    if(argv[1] == "ip"):
-        return ip()
-    else:
-        return f"'{argv[1]}' is not an available command. Déso."
+        return "Veuillez rajouter des arguments"
+    match argv[1]:
+        case "lookup":
+            return lookup()
+        case "ping":
+            return ping()
+        case "ip":
+            return ip()
+    return f"'{argv[1]}' is not an available command. Déso."
     
 def lookup():
     if (len(argv) < 3):
-        print("Veuillez ajouter un nom de domaine")
-        exit()
+        return "Veuillez ajouter un nom de domaine"
     if (len(argv) > 3):
-        print("Trop d'arguments...")
-        exit()
+        return "Trop d'arguments..."
     return socket.gethostbyname(argv[2])
 
 def ping():
     if (len(argv) < 3):
-        print("Veuillez ajouter une adresse ip en argument")
-        exit()
+        return "Veuillez ajouter une adresse ip en argument"
     if (len(argv) > 3):
-        print("Trop d'arguments...")
-        exit()
+        return "Trop d'arguments..."
     if (os.system(f"ping {argv[2]} > nul") == 0):
         return "UP !"
     else:
