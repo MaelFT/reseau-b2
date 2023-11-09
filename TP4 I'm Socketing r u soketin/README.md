@@ -1,26 +1,25 @@
-# TP4 : I'm Socketing, r u soketin ?
+# I. Simple bs program
 
-Dans ce TP on va rentrer dans le vif du sujet et créer une interaction entre deux programmes Python, grâce au réseau. On va donc créer un client et un serveur. Pour ça on va utiliser la librairie `socket`.
 
-Dans tout ce TP, vous aurez à chaque fois deux feuilles de code pour faire vos tests :
+🌞 **Commandes...**
 
-- **une qui s'exécute sur le serveur : `bs_server.py`**
-  - il devra s'exécuter sur une machine Rocky
-- **une qui s'exécute sur le client : `bs_client.py`**
-  - il devra d'exécuter sur une autre machine virtuelle, peu importe l'OS
-  - Linux quand même, comme ça on reste dans un environnement similaire pour tous
-  - vous pouvez utiliser un OS graphique si vous le souhaitez : plus proche du monde réel pour le client !
-- on va faire évoluer ces deux fichiers au fil du TP
-  - pour le rendu, gardez à chaque fois les versions intermédiaires que je vous demande de coder
-  - la plupart des 🌞 c'est un fichier de code Python que je veux voir dans le dépôt git de rendu de toute façon !
+```shell
+[mael@server code]$ sudo firewall-cmd --add-port=13337/tcp --permanent
+success
+[mael@server code]$ sudo firewall-cmd --reload
+success
+```
 
-![Client/Server](./img/calf-cow.jpeg)
+```shell
+[mael@server code]$ python3 bs_server_I1.py
+Connected by ('10.33.76.213', 47868)
+Données reçues du client : b'Meooooo !'
 
-> J'ai séparé les trois parties du TP en trois docs pour épurer un peu le bail !
+[mael@client code]$ python3 bs_client_I1.py
+Le serveur a répondu b'Hi mate !'
+```
 
-# [I. Simple bs program](./1_simple_bs_program/README.md)
-
-# [II. You say dev I say good practices](./2_good_practices/README.md)
-
-# [III. COMPUTE](./3_compute/README.md)
-
+```shell
+[mael@server code]$ ss -alnp | grep python3
+tcp   LISTEN 0      1                                0.0.0.0:13337            0.0.0.0:*     users:(("python3",pid=1756,fd=3))
+```
