@@ -43,13 +43,13 @@ logging.info(f'Le serveur tourne sur {host}:{port}')
 logging.info(f'Un client {addr} s\'est connecté.')
 
 lastTime = datetime.datetime.now()
+period = datetime.datetime.now()
 
 while True:
-    period = datetime.datetime.now()
 
     if period.second % 30 == 0 and (period - lastTime).total_seconds() >= 1:
-        lastTime = period
         logging.warn(f'Aucun client depuis plus de une minute.')
+        lastTime = period
 
     try:
         data = conn.recv(1024)
@@ -67,7 +67,6 @@ while True:
         
         logging.info(f'Réponse envoyée au client {addr} : {message}.')
         conn.sendall(message)
-        break
 
     except socket.error:
         print("Error Occured.")
