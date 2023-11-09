@@ -16,7 +16,8 @@ print(f"Connecté avec succès au serveur {host} sur le port {port}")
 
 data = input("Que veux-tu envoyer au serveur : ")
 
-regexp = re.compile(r'\b(!?meo|waf)')
+regexp = re.compile(r'\b(meo|waf)')
+print(regexp.search(data))
 if (regexp.search(data)):
     raise ValueError("Votre message doit contenir 'meo' ou 'waf' !")
 
