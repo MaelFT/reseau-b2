@@ -1,6 +1,9 @@
 import socket
 import argparse
 import logging
+import os
+
+os.makedirs("/var/log/bs_server", exist_ok=True)
 
 logging.basicConfig(filename="/var/log/bs_server/bs_server.log", level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
