@@ -20,7 +20,7 @@ while True:
         print(data)
 
         if (data.decode().__contains__("meo")):
-            conn.sendall('Meo à toi confrère.')
+            conn.sendall(b'Meo a toi confrere.')
         elif (data.decode().__contains__("waf")):
             conn.sendall(b'ptdr t ki')
         else:
