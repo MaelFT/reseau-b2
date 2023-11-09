@@ -3,11 +3,12 @@ import argparse
 import logging
 import os
 import sys
+import datetime
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)],)
-# filename="/var/log/bs_server/bs_server.log", 
+
 host = '10.33.76.214'
 
 parser = argparse.ArgumentParser()
@@ -41,12 +42,17 @@ conn, addr = s.accept()
 logging.info(f'Le serveur tourne sur {host}:{port}')
 logging.info(f'Un client {addr} s\'est connecté.')
 
+lastTime = datetime.datetime.now()
+
 while True:
+    period = datetime.datetime.now()
+
+    if period.second % 30 == 0 and (period - lastTime).total_seconds() >= 1:
+        lastTime = period
+        logging.warn(f'Aucun client depuis plus de une minute.')
 
     try:
         data = conn.recv(1024)
-
-        if not data: break
 
         logging.info(f'Le client {addr} a envoyé {data}.')
 
@@ -61,6 +67,7 @@ while True:
         
         logging.info(f'Réponse envoyée au client {addr} : {message}.')
         conn.sendall(message)
+        break
 
     except socket.error:
         print("Error Occured.")
