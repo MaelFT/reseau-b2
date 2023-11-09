@@ -1,8 +1,9 @@
 import socket
 import argparse
 import logging
+import sys
 
-logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+logging.basicConfig(filename='/var/log/bs_server/bs_server.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', handlers=[logging.StreamHandler(sys.stdout)])
 
 host = ''
 
