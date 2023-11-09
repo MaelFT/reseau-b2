@@ -10,10 +10,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="open on a specific port")
 args = parser.parse_args()
 
-port = int(args.port)
+port = args.port
 
 if (port == None):
     port = 13337
+else:
+    port = int(port)
 
 if (port < 0 or port > 65535):
     raise ValueError("ERROR Le port spécifié n'est pas un port possible (de 0 à 65535).")
