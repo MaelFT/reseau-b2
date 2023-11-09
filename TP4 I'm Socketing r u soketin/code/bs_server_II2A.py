@@ -1,9 +1,8 @@
 import socket
 import argparse
 import logging
-import sys
 
-logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', handlers=[logging.StreamHandler(sys.stdout)])
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 # logging.FileHandler("/var/log/bs_server/bs_server.log"), 
 host = ''
 
@@ -36,7 +35,6 @@ s.listen(1)
 conn, addr = s.accept()
 
 logging.info(f'Le serveur tourne sur {host}:{port}')
-print(logging.info(f'Le serveur tourne sur {host}:{port}'))
 logging.info(f'Un client {addr} s\'est connecté.')
 
 while True:
