@@ -2,7 +2,7 @@ import socket
 import argparse
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%yyyy-%mm-%dd %hh:%mm:%ss')
 # logging.FileHandler("/var/log/bs_server/bs_server.log"), 
 host = ''
 
