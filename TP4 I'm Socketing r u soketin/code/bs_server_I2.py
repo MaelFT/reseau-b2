@@ -17,6 +17,8 @@ while True:
 
         if not data: break
 
+        print(data)
+
         if (data == 'meo'):
             conn.sendall('Meo à toi confrère.')
         elif (data == 'waf'):
