@@ -13,7 +13,9 @@ except Exception as e:
 
 print(f"Connecté avec succès au serveur {host} sur le port {port}")
 
-s.sendall(input("Que veux-tu envoyer au serveur : "))
+data = input("Que veux-tu envoyer au serveur : ")
+
+s.sendall(data.encode())
 
 data = s.recv(1024)
 
