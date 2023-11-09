@@ -17,13 +17,12 @@ while True:
 
         if not data: break
 
-        match data:
-            case 'meo':
-                conn.sendall('Meo à toi confrère.')
-            case 'waf':
-                conn.sendall(b'ptdr t ki')
-            case other:
-                conn.sendall(b'Mes respects humble humain.')
+        if (data == 'meo'):
+            conn.sendall('Meo à toi confrère.')
+        elif (data == 'waf'):
+            conn.sendall(b'ptdr t ki')
+        else:
+            conn.sendall(b'Mes respects humble humain.')
 
     except socket.error:
         print("Error Occured.")
