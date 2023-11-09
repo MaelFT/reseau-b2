@@ -3,7 +3,7 @@ import argparse
 import logging
 import sys
 
-logging.basicConfig(filename='/var/log/bs_server/bs_server.log', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', handlers=[logging.StreamHandler(sys.stdout)])
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', handlers=[logging.FileHandler("/var/log/bs_server/bs_server.log"), logging.StreamHandler(sys.stdout)])
 
 host = ''
 
