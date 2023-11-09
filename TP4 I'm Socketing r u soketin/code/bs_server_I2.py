@@ -17,8 +17,6 @@ while True:
 
         if not data: break
 
-        print(data)
-
         if (data.decode().__contains__("meo")):
             conn.sendall(b'Meo a toi confrere.')
         elif (data.decode().__contains__("waf")):
