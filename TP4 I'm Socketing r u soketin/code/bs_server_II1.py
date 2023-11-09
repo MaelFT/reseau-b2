@@ -6,7 +6,6 @@ port = 13337
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="open on an specific port")
-parser.add_argument("-h", "--help", action="help")
 args = parser.parse_args()
 
 port = args.port
