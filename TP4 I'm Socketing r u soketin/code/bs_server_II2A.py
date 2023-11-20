@@ -34,7 +34,10 @@ try:
     s.bind((host, port))
 except Exception as e:
     print("On dirait qu'il y a eu un soucis, déso.")
-    print(f"L'erreur native est : {e.message}")
+    if hasattr(e, 'message'):
+        print(f"L'erreur native est : {e.message}")
+    else:
+        print(e)
 
 s.listen(1)
 conn, addr = s.accept()
@@ -47,9 +50,7 @@ period = datetime.datetime.now()
 
 while True:
 
-    if period.second % 30 == 0 and (period - lastTime).total_seconds() >= 1:
-        logging.warn(f'Aucun client depuis plus de une minute.')
-        lastTime = period
+
 
     try:
         data = conn.recv(1024)
@@ -64,6 +65,10 @@ while True:
             message = b'ptdr t ki'
         else:
             message = b'Mes respects humble humain.'
+
+        if period.second % 30 == 0 and (period - lastTime).total_seconds() >= 1:
+            logging.warn(f'Aucun client depuis plus de une minute.')
+            lastTime = period
         
         logging.info(f'Réponse envoyée au client {addr} : {message}.')
         conn.sendall(message)
