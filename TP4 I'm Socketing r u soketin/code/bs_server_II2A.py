@@ -64,7 +64,7 @@ while True:
             message = b'Mes respects humble humain.'
 
         period = datetime.datetime.now()
-        if (period - lastTime).total_seconds() == 30:
+        if (lastTime - period).total_seconds() == 30:
             logging.warn(f'Aucun client depuis plus de une minute.')
             lastTime = period
         
