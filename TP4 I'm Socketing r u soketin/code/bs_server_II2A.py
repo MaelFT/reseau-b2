@@ -3,7 +3,7 @@ import argparse
 import logging
 import os
 import sys
-import datetime
+import time
 
 os.makedirs("/var/log/bs_server", exist_ok=True)
 
@@ -45,12 +45,17 @@ conn, addr = s.accept()
 logging.info(f'Le serveur tourne sur {host}:{port}')
 logging.info(f'Un client {addr} s\'est connecté.')
 
-lastTime = datetime.datetime.now()
-
 while True:
 
     try:
+        logging.warn(f'Aucun client depuis plus de une minute.')
+    except socket.error:
+        time.sleep(1)
+        break
+    try:
         data = conn.recv(1024)
+
+        if not data: break
 
         logging.info(f'Le client {addr} a envoyé {data}.')
 
@@ -62,11 +67,6 @@ while True:
             message = b'ptdr t ki'
         else:
             message = b'Mes respects humble humain.'
-
-        period = datetime.datetime.now()
-        if (lastTime - period).total_seconds() == 30:
-            logging.warn(f'Aucun client depuis plus de une minute.')
-            lastTime = period
         
         logging.info(f'Réponse envoyée au client {addr} : {message}.')
         conn.sendall(message)
