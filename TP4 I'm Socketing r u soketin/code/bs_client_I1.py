@@ -1,7 +1,9 @@
 import socket
 
-host = '10.33.76.214'
-port = 13337
+# host = '10.33.76.214'
+# port = 13337
+host = '10.33.76.200'
+port = 32500
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
